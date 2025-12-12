@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <h1>OK</h1>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("code")) {
+      document.body.innerHTML += "<pre>CODE: " + params.get("code") + "</pre>";
+    }
+  </script>
+</body>
+</html>
