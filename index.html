@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Synextec Callback</title>
+  </head>
+  <body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; padding: 24px;">
+    <h1>Synextec Callback</h1>
+    <p id="status">Lendo parâmetros...</p>
+    <pre id="out" style="background:#111;color:#0f0;padding:12px;border-radius:8px;overflow:auto;"></pre>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const error = params.get("error");
+      const out = document.getElementById("out");
+      const status = document.getElementById("status");
+
+      const obj = {
+        code: code || null,
+        error: error || null,
+        full_url: window.location.href
+      };
+
+      out.textContent = JSON.stringify(obj, null, 2);
+
+      if (code) status.textContent = "OK — CODE capturado. Copie o code acima e cole no terminal.";
+      else if (error) status.textContent = "ERRO — veio 'error' na URL. Copie o JSON acima e me mande.";
+      else status.textContent = "Sem code ainda. Abra o link de autorização do Mercado Livre para cair aqui com ?code=...";
+    </script>
+  </body>
+</html>
